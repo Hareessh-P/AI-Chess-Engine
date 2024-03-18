@@ -1,6 +1,5 @@
 package chess.generateMoves;
 
-import chess.moves.Move;
 import chess.pieces.Bitboard;
 import chess.pieces.Pawn;
 

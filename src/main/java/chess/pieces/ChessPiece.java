@@ -1,66 +1,45 @@
 package chess.pieces;
 
-import java.util.NoSuchElementException;
+import chess.board.Board;
+import chess.moves.Move;
 
+//  Initially made this class as abstract and then realized that it isn't needed ...
 public class ChessPiece implements Piece {
-    private Bitboard bbPosition;
-    private int boxNumber;
+    private int boxNo;
+    private boolean colour;
 
-
-
-    public ChessPiece(Bitboard bbPosition) {
-        this.boxNumber = computeBoxNumber(bbPosition);
-        this.bbPosition = bbPosition;
+    public ChessPiece(int boxNo, boolean colour) {
+        this.boxNo = boxNo;
+        this.colour = colour;
     }
 
-    public Bitboard getBbPosition() {
-        return bbPosition;
+    public void setBoxNo(int boxNo) {
+        this.boxNo = boxNo;
     }
-
-    public void setBbPosition(Bitboard bbPosition) {
-
-        this.bbPosition = bbPosition;
-        this.boxNumber = computeBoxNumber(bbPosition);
+    public int getBoxNo() {
+        return boxNo;
     }
-
-    public void setBoxNumber(int boxNumber) {
-        this.boxNumber = boxNumber;
+    public boolean getColour() {
+        return colour;
     }
-    public int getBoxNumber() {
-        return boxNumber;
-    }
-
-
-    public int computeBoxNumber(Bitboard bbPosition) {
-        int position = 0;
-        long bit = bbPosition.getBitboard();
-        if(bit == 0) return 0;
-        while ((bit & 1) != 1) {
-            bit >>= 1;
-            position++;
-        }
-        if(position > 63 || position < 0) throw new NoSuchElementException("Box position not found");
-        return position;
+    public void setColour(boolean colour) {
+        this.colour = colour;
     }
 
     @Override       // TODO
-    public long movePiece(Bitboard from, Bitboard to, long bitOccupancy) {
-        this.bbPosition = to;
-        bitOccupancy = bitOccupancy & (~from.getBitboard()); // WTH !! Worst Naming ************
-        bitOccupancy = bitOccupancy | to.getBitboard();
+    public void movePiece(Move move, Board board)  {
 
-        return bitOccupancy;
-//        bbOccupancy.andNot(from);
-//        bbOccupancy.setBit(to);
+        if(!move.isValidColourMove()) {
+            move.setCompleted(false);
+            throw new InvalidMoveException("U can't access opponents piece ...");
+        }
+
     }
 
-    //        String binaryRepOcc = Long.toBinaryString(bbOccupancy.getBitboard());
-//        int toBoxNo = computeBoxNumber(to,COLOUR);
-//
-//        if (binaryRepOcc.charAt(toBoxNo) == '0') {
-//            this.setBbPosition(to);
-//        } else {
-//            throw new IllegalArgumentException("Occupied position detected");
-//        }
+    @Override
+    public void removePiece(int toBoxNo) {
 
+    }
 }
+
+

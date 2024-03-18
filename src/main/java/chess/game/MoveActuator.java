@@ -1,40 +1,35 @@
 package chess.game;
 
+import chess.board.Board;
 import chess.board.BoardPrinter;
 import chess.moves.Move;
 import chess.pieces.Bitboard;
 import chess.pieces.ChessPiece;
+import chess.pieces.Piece;
+
+// TODO : Ig i wont need MoveActuator ... NOPE idts ...
 
 public class MoveActuator {
     Move move;
     BoardPrinter boardPrinter;
+    Board board;
 
-    long bitOccupancy;
-
-    public MoveActuator(Move move, BoardPrinter boardPrinter, long bbOccupancy) {
+    public MoveActuator(Move move, BoardPrinter boardPrinter, Board board) {
         this.move = move;
         this.boardPrinter = boardPrinter;
-        this.bitOccupancy = bbOccupancy;
+        this.board = board;
     }
 
     public void executeMove() {
-        int fromRow = this.move.getFromBoxNo() / 8;
-        int fromCol = this.move.getFromBoxNo() % 8;
-        int toRow = this.move.getToBoxNo() / 8;
-        int toCol = this.move.getToBoxNo() % 8;
-
-        //          Board op Strings swapped ...
-        String temp = this.boardPrinter.getElement(fromRow,fromCol);
-        this.boardPrinter.setElement(fromRow,fromCol,this.boardPrinter.getElement(toRow,toCol));
-        this.boardPrinter.setElement(toRow,toCol,temp);
-
-        ChessPiece piece = this.move.getMover();
-
+        Piece piece = this.move.getMover();
+// TODO : I'll proly move this .movePiece to first --> update move object and use boardPrinter to print the board accordingly ..
         piece.movePiece(
-                new Bitboard(BitboardGenerator.generateBitboard(fromRow,fromCol), this.move.getColour()),
-                new Bitboard(BitboardGenerator.generateBitboard(toRow,toCol), this.move.getColour()),
-                this.bitOccupancy
+                this.move,
+                this.board
                 );
     }
 
+    public void setMove(Move move) {
+        this.move = move;
+    }
 }

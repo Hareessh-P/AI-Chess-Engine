@@ -1,38 +1,31 @@
 package chess.board;
 
 public class BoardPrinter {
-    private String[][] board;
+//    private String[][] displayBoard;
 
+    private final Board board;
     public BoardPrinter() {
-        double spacing = 3;
-//        String space = String.format("%" + spacing + "s", "");
-        String space = "\u25AD";
-        board = new String[][] {
-                {"♜", "♞", "♝", "♛", "♚", "♝", "♞", "♜"},
-                {"♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟"},
-                {space, space, space, space, space, space, space, space},
-                {space, space, space, space, space, space, space, space},
-                {space, space, space, space, space, space, space, space},
-                {space, space, space, space, space, space, space, space},
-                {"♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙"},
-                {"♖", "♘", "♗", "♕", "♔", "♗", "♘", "♖"}
-        };
+        this.board = Board.getInstance();
     }
 
     public String getElement(int row, int col) {
-        return board[row][col];
+        int boxNo = getBoxNumber(row,col);
+        return this.board.getPieceDisplayString(boxNo);
     }
-    public void setElement(int row, int col, String value) {
-        board[row][col] = value;
+    public void setElement(int row, int col, String pieceString) {
+        int boxNo = getBoxNumber(row, col);
+        this.board.setPieceDisplayString(boxNo, pieceString);
     }
     public void printChessboard(boolean whiteView) {
         // Print the chessboard
         for (int i = 0; i < 8; i++) {
-
             System.out.println("+------------------------------------+");
             System.out.print("|");
-            for (int j = 0; j < 8; j++) {
-                String piece = whiteView ? this.board[i][j] : this.board[7 - i][7 - j];
+            for (int j = 7; j >= 0; j--) {
+                int boxNoWhite = getBoxNumber(7-i, 7-j);
+                int boxNoBlack = getBoxNumber(i, j);
+                String piece = whiteView ?
+                        this.board.getPieceDisplayString(boxNoWhite) : this.board.getPieceDisplayString(boxNoBlack);
                 System.out.print(" " + piece + " |");
             }
             System.out.print(" " + (whiteView ? 8 - i : i + 1));
@@ -47,5 +40,9 @@ public class BoardPrinter {
 //            System.out.print(" " + c + "   ");
 //        }
         System.out.println();
+    }
+
+    public static int getBoxNumber(int row, int col) {
+        return row * 8 + col ;
     }
 }
