@@ -1,6 +1,7 @@
 package chess.pieces;
 
 import chess.board.Board;
+import chess.game.InputParser;
 import chess.moves.Move;
 
 abstract public class SpecialChessPiece implements  Piece{
@@ -27,7 +28,7 @@ abstract public class SpecialChessPiece implements  Piece{
 
 
     @Override
-    public void movePiece(Move move, Board board) {
+    public void movePiece(Move move, Board board) throws InputParser.NoPieceException {
 
         if(!move.isValidColourMove()) {
             move.setCompleted(false);
@@ -37,7 +38,7 @@ abstract public class SpecialChessPiece implements  Piece{
         int fromBoxNo = move.getFromBoxNo();
         int toBoxNo = move.getToBoxNo();
 
-        if(!this.isValidPieceMove(fromBoxNo, toBoxNo))
+        if(!this.isValidPieceMove(fromBoxNo, toBoxNo, board))
             throw new InvalidMoveException("Invalid move.");
 
         boolean occupied = Piece.isNthBitSet(
@@ -56,13 +57,12 @@ abstract public class SpecialChessPiece implements  Piece{
             else {
 //                 TODO --> DONE : ATTACK --> its just a valid move for now until we maintain separate bitboards for each piece type ... :)
                 move.setCaptureMove(true);
-                pieceInToBox.removePiece(toBoxNo);
 //                move.setCaptured(pieceInToBox);  //    We are getting the piece from move only lol.
             }
         }
 
-        this.removePiece(fromBoxNo);
-        this.placePiece(toBoxNo);
+        this.removePiece(fromBoxNo, board);
+        this.placePiece(toBoxNo, board);
 
         //          WE ARE CHANGING THE DISPLAY AFTER VALIDATING THE MOVE --> GOOD PRACTICE
         board.movePieceOnDisplayBoard(
@@ -70,8 +70,7 @@ abstract public class SpecialChessPiece implements  Piece{
         );
     }
 
-    public void placePiece(int toBoxNo) {
-        Board board = Board.getInstance();
+    public void placePiece(int toBoxNo, Board board) {
         board.setOccupancyBitboard(toBoxNo);
         this.setBoxNo(toBoxNo);
         if(this.getColour()) {
@@ -84,8 +83,7 @@ abstract public class SpecialChessPiece implements  Piece{
         }
     }
 
-    public void removePiece(int boxNo) {        //  TODO AFTER NAP OOooozzzzzz...
-        Board board = Board.getInstance();
+    public void removePiece(int boxNo, Board board) {        //  TODO AFTER NAP OOooozzzzzz...
         board.unsetOccupancyBitboard(boxNo);
         if(this.getColour()) {
             board.unsetBlackOccupancyBitboard(boxNo);
@@ -97,7 +95,7 @@ abstract public class SpecialChessPiece implements  Piece{
         }
     }
 
-    public abstract  boolean isValidPieceMove(int fromBoxNo, int toBoxNo);
+    public abstract  boolean isValidPieceMove(int fromBoxNo, int toBoxNo, Board board);
 
 }
 

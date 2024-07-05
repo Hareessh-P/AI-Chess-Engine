@@ -4,8 +4,8 @@ public class BoardPrinter {
 //    private String[][] displayBoard;
 
     private final Board board;
-    public BoardPrinter() {
-        this.board = Board.getInstance();
+    public BoardPrinter(Board board) {
+        this.board = board;
     }
 
     public String getElement(int row, int col) {
@@ -22,7 +22,7 @@ public class BoardPrinter {
             System.out.println("+------------------------------------+");
             System.out.print("|");
             for (int j = 7; j >= 0; j--) {
-                int boxNoWhite = getBoxNumber(7-i, 7-j);
+                int boxNoWhite = getBoxNumber(7-i, j);
                 int boxNoBlack = getBoxNumber(i, j);
                 String piece = whiteView ?
                         this.board.getPieceDisplayString(boxNoWhite) : this.board.getPieceDisplayString(boxNoBlack);
@@ -35,7 +35,7 @@ public class BoardPrinter {
         // Print letters 'a' to 'h' at the bottom
 
         if(whiteView) System.out.print(" a    b    c   d    e    f    g    h");
-        else System.out.print(" H    G    F   E    D    C    B    A");
+        else System.out.print(" A    B    C   D    E    F    G    H");
 //        for (char c = (whiteView ? 'a' : 'A'); c <= (whiteView ? 'h' : 'H'); c++) {
 //            System.out.print(" " + c + "   ");
 //        }

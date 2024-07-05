@@ -1,6 +1,7 @@
 package chess.pieces;
 
 import chess.board.Board;
+import chess.game.InputParser;
 import chess.moves.Move;
 
 //  Initially made this class as abstract and then realized that it isn't needed ...
@@ -27,7 +28,7 @@ public class ChessPiece implements Piece {
     }
 
     @Override       // TODO
-    public void movePiece(Move move, Board board)  {
+    public void movePiece(Move move, Board board) throws InputParser.NoPieceException {
 
         if(!move.isValidColourMove()) {
             move.setCompleted(false);
@@ -37,8 +38,16 @@ public class ChessPiece implements Piece {
     }
 
     @Override
-    public void removePiece(int toBoxNo) {
-
+    public void removePiece(int toBoxNo, Board board) {
+        board.unsetOccupancyBitboard(toBoxNo);
+        if(this.getColour()) {
+            board.unsetBlackOccupancyBitboard(toBoxNo);
+            //      TODO : If attacked implicitly we can un-set the occ bit board of the attacked colour (not attacking...) by just --> whitebb = ~blackbb & whitebb
+        }
+        else {
+            board.unsetWhiteOccupancyBitboard(toBoxNo);
+            //      TODO : If attacked implicitly we can un-set the occ bit board of the attacked colour (not attacking...) by just --> blackbb = ~whitebb & blackbb
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 package chess.pieces;
 
 import chess.board.Board;
+import chess.game.InputParser;
 import chess.moves.Move;
 import chess.resources.AttackMasks;
 
@@ -10,20 +11,19 @@ public class King extends SpecialChessPiece{
     }
 
     @Override
-    public void movePiece(Move move, Board board) {
+    public void movePiece(Move move, Board board) throws InputParser.NoPieceException {
         super.movePiece(move, board);
     }
 
     @Override
-    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo) {
+    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo, Board board) {
         return Piece.isNthBitSet(AttackMasks.KING_MOVES_MASKS[fromBoxNo], toBoxNo);
     }
 
     @Override
-    public void placePiece(int boxNo) {
-        super.placePiece(boxNo);
+    public void placePiece(int boxNo, Board board) {
+        super.placePiece(boxNo, board);
         boolean colour = this.getColour();
-        Board board = Board.getInstance();
 
         if(colour) {
             board.setBlackKingOccupancyBitboard(boxNo);

@@ -1,8 +1,12 @@
 package chess.moves;
 
+import chess.board.BoardPrinter;
+import chess.game.InputParser;
 import chess.pieces.Piece;
 
 public class Move {
+    public float score;
+    BoardPrinter boardPrinter;
     Piece mover;
     boolean blackTurn;
     boolean completed;
@@ -18,12 +22,17 @@ public class Move {
 
     public Move(Piece mover, int fromBoxNo, int toBoxNo, boolean isCaptureMove, Piece captured) {
         this.mover = mover;
+        this.blackTurn = this.mover.getColour();
         this.fromBoxNo = fromBoxNo;
         this.toBoxNo = toBoxNo;
         this.isCaptureMove = isCaptureMove;
         this.captured = captured;
 //        this.colour = mover.getColour();
         this.completed = true;      //      Just for ease of code ...
+    }
+
+    public void setBoardPrinter(BoardPrinter boardPrinter) {
+        this.boardPrinter = boardPrinter;
     }
 
     public Piece getMover() {
@@ -70,8 +79,18 @@ public class Move {
         isCaptureMove = captureMove;
     }
 
-    public Piece getCaptured() {
-        return captured;
+    public Piece getCaptured() throws InputParser.NoPieceException {
+
+        if (this.captured!= null) return this.captured;
+        try {
+            InputParser ip = new InputParser(this.boardPrinter);
+            Piece chessPiece = ip.getChessPiece(this.toBoxNo);
+            return chessPiece;
+        }
+        catch (Exception e) {
+
+        }
+        return null;
     }
 
     public void setCaptured(Piece captured) {

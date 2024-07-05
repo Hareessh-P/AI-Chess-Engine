@@ -1,223 +1,109 @@
 package chess.board;
 
+import chess.game.InputParser;
+import chess.game.MoveActuator;
+import chess.moves.Move;
 import chess.pieces.*;
 
-public class Board {
-    private volatile static Board uniqueInstance;
-    private String[] displayBoard;
-    private String space;
+public interface Board {
+    String getPieceDisplayString(int boxNo);
 
-    Bitboard occupancyBitboard;        // TODO : See if its occupancy bitboard and change the entire codebase accordingly
-    Bitboard whiteOccupancyBitboard;
-    Bitboard blackOccupancyBitboard;
-    Bitboard whitePawns;
-    Bitboard whiteRooks;
-    Bitboard whiteKnights;
-    Bitboard whiteBishops;
-    Bitboard whiteKing;
-    Bitboard whiteQueen;
-    Bitboard blackPawns;
-    Bitboard blackRooks;
-    Bitboard blackKnights;
-    Bitboard blackBishops;
-    Bitboard blackKing;
-    Bitboard blackQueen;
+    void setPieceDisplayString(int boxNo, String pieceString);
 
+    Bitboard getOccupancyBitboard();
 
-    private Board() {
-        //              POTENTIAL PROBLEM  --> Occupancy Bitboard colour is set to black ... :(
-        this.occupancyBitboard = new Bitboard(0xFFFF00000000FFFFL, true);   //  <----------
-        this.whiteOccupancyBitboard = new Bitboard(0xFFFF000000000000L, false);
-        this.blackOccupancyBitboard = new Bitboard(0x000000000000L, true);
-        this.space = "\u25AD";    //  Unicode escape sequence '\u25AD' can be replaced with '▭'
-        this.displayBoard = new String[] {
-//              0      1     2     3    4     5     6    7
-                "♖", "♘", "♗", "♔", "♕", "♗", "♘", "♖",
-                //8     9   10    11    12   13     14  15
-                "♙", "♙", "♙", "♙", "♙", "♙", "♙", "♙",
-                "▭", "▭", "▭", "▭", "▭", "▭", "▭", "▭",
-                "▭", "▭", "▭", "▭", "▭", "▭", "▭", "▭",
-                "▭", "▭", "▭", "▭", "▭", "▭", "▭", "▭",
-                "▭", "▭", "▭", "▭", "▭", "▭", "▭", "▭",
-                "♟", "♟", "♟", "♟", "♟", "♟", "♟", "♟",
-               "♜", "♞", "♝", "♚", "♛", "♝", "♞", "♜",
+    Bitboard getWhiteOccupancyBitboard();
 
-        };
-        this.whitePawns = new Bitboard(0x000000000000FF00L,false);
-        this.whiteRooks = new Bitboard(0x0000000000000081L,false);
-        this.whiteKnights = new Bitboard(0x0000000000000042L,false);
-        this.whiteBishops = new Bitboard(0x0000000000000024L,false);
-        this.whiteKing = new Bitboard(0x0000000000000008L,false);
-        this.whiteQueen = new Bitboard(0x0000000000000010L,false);
+    Bitboard getBlackOccupancyBitboard();
 
-        this.blackPawns = new Bitboard(0x00FF000000000000L,true);
-        this.blackRooks = new Bitboard(0x8100000000000000L,true);
-        this.blackKnights = new Bitboard(0x4200000000000000L,true);
-        this.blackBishops = new Bitboard(0x2400000000000000L,true);
-        this.blackKing = new Bitboard(0x8000000000000000L,true);
-        this.blackQueen = new Bitboard(0x1000000000000000L,true);
-    }
-    public static Board getInstance() {
-        if (uniqueInstance == null) {
-            synchronized (Board.class) {
-                if (uniqueInstance == null) {
-                    uniqueInstance = new Board();
-                }
-            }
-        }
-        return uniqueInstance;
-    }
+    Bitboard getWhitePawns();
 
-    public Bitboard getOccupancyBitboard() {
-        return occupancyBitboard;
-    }
+    Bitboard getWhiteRooks();
 
-    public void setOccupancyBitboard(int boxNo) {
-        this.occupancyBitboard.setBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getWhiteKnights();
 
-    public void unsetOccupancyBitboard(int boxNo) {
-        this.occupancyBitboard.unsetBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getWhiteBishops();
 
-    public Bitboard getWhiteOccupancyBitboard() {
-        return whiteOccupancyBitboard;
-    }
+    Bitboard getWhiteKing();
 
-    public void setWhiteOccupancyBitboard(int boxNo) {
-        this.whiteOccupancyBitboard.setBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getWhiteQueen();
 
-    public void unsetWhiteOccupancyBitboard(int boxNo) {
-        this.whiteOccupancyBitboard.unsetBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getBlackPawns();
 
-    public Bitboard getBlackOccupancyBitboard() {
-        return blackOccupancyBitboard;
-    }
+    Bitboard getBlackRooks();
 
-    public void setBlackOccupancyBitboard(int boxNo) {
-        this.blackOccupancyBitboard.setBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getBlackKnights();
 
-    public void unsetBlackOccupancyBitboard(int boxNo) {
-        this.blackOccupancyBitboard.unsetBitInOccupancyBitboard(boxNo);
-    }
+    Bitboard getBlackBishops();
 
-    public void movePieceOnDisplayBoard(int fromBoxNumber, int toBoxNumber) {
-        System.out.println("\nInside movePieceOnDisplayBoard : ");
-        System.out.println("\nfromboxno : "+ fromBoxNumber + "toboxno" + toBoxNumber);
-        System.out.println();
-        System.out.println();
-        this.displayBoard[toBoxNumber] = this.displayBoard[fromBoxNumber];
-        this.displayBoard[fromBoxNumber] = this.space;
-    }
+    Bitboard getBlackKing();
 
-    public String getPieceDisplayString(int boxNo) {
-        return this.displayBoard[boxNo];
-    }
+    Bitboard getBlackQueen();
 
-    public void setPieceDisplayString(int boxNo, String pieceString) {
-        this.displayBoard[boxNo] = pieceString;
-    }
+    void setOccupancyBitboard(int toBoxNo);
 
-    public void setBlackPawnOccupancyBitboard(int boxNo) {
-        this.blackPawns.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetOccupancyBitboard(int fromBoxNo);
 
-    public void unsetBlackPawnOccupancyBitboard(int boxNo) {
-        this.blackPawns.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackOccupancyBitboard(int toBoxNo);
 
-    public void setBlackRookOccupancyBitboard(int boxNo) {
-        this.blackRooks.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetBlackOccupancyBitboard(int fromBoxNo);
 
-    public void unsetBlackRookOccupancyBitboard(int boxNo) {
-        this.blackRooks.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackPawnOccupancyBitboard(int toBoxNo);
 
-    public void setBlackBishopOccupancyBitboard(int boxNo) {
-        this.blackBishops.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetBlackPawnOccupancyBitboard(int fromBoxNo);
 
-    public void unsetBlackBishopOccupancyBitboard(int boxNo) {
-        this.blackBishops.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setWhiteOccupancyBitboard(int toBoxNo);
 
-    public void setBlackKnightsOccupancyBitboard(int boxNo) {
-        this.blackKnights.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetWhiteOccupancyBitboard(int fromBoxNo);
 
-    public void unsetBlackKnightsOccupancyBitboard(int boxNo) {
-        this.blackKnights.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setWhitePawnOccupancyBitboard(int toBoxNo);
 
-    public void setBlackKingOccupancyBitboard(int boxNo) {
-        this.blackKing.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetWhitePawnOccupancyBitboard(int fromBoxNo);
 
-    public void unsetBlackKingOccupancyBitboard(int boxNo) {
-        this.blackKing.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void movePieceOnDisplayBoard(int fromBoxNo, int toBoxNo);
 
-    public void setBlackQueenOccupancyBitboard(int boxNo) {
-        this.blackQueen.setBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackKingOccupancyBitboard(int boxNo);
 
-    public void unsetBlackQueenOccupancyBitboard(int boxNo) {
-        this.blackQueen.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setWhiteKingOccupancyBitboard(int boxNo);
 
-    public void unsetWhitePawnOccupancyBitboard(int boxNo) {
-        this.whitePawns.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackKnightsOccupancyBitboard(int boxNo);
 
-    public void setWhitePawnOccupancyBitboard(int boxNo) {
-        this.whitePawns.setBitInOccupancyBitboard(boxNo);
-    }
+    void setWhiteKnightsOccupancyBitboard(int boxNo);
 
-    public void setWhiteRookOccupancyBitboard(int boxNo) {
-        this.whiteRooks.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetBlackKnightsOccupancyBitboard(int boxNo);
 
-    public void unsetWhiteRookOccupancyBitboard(int boxNo) {
-        this.whiteRooks.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void unsetWhiteKnightsOccupancyBitboard(int boxNo);
 
-    public void setWhiteBishopOccupancyBitboard(int boxNo) {
-        this.whiteBishops.setBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackQueenOccupancyBitboard(int boxNo);
 
-    public void unsetWhiteBishopOccupancyBitboard(int boxNo) {
-        this.whiteBishops.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setWhiteQueenOccupancyBitboard(int boxNo);
 
-    public void setWhiteKnightsOccupancyBitboard(int boxNo) {
-        this.whiteKnights.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetBlackQueenOccupancyBitboard(int boxNo);
 
-    public void unsetWhiteKnightsOccupancyBitboard(int boxNo) {
-        this.whiteKnights.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void unsetWhiteQueenOccupancyBitboard(int boxNo);
 
-    public void setWhiteKingOccupancyBitboard(int boxNo) {
-        this.whiteKing.setBitInOccupancyBitboard(boxNo);
-    }
+    void setBlackRookOccupancyBitboard(int boxNo);
 
-    public void unsetWhiteKingOccupancyBitboard(int boxNo) {
-        this.whiteKing.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void setWhiteRookOccupancyBitboard(int boxNo);
 
-    public void setWhiteQueenOccupancyBitboard(int boxNo) {
-        this.whiteQueen.setBitInOccupancyBitboard(boxNo);
-    }
+    void unsetBlackRookOccupancyBitboard(int boxNo);
 
-    public void unsetWhiteQueenOccupancyBitboard(int boxNo) {
-        this.whiteQueen.unsetBitInOccupancyBitboard(boxNo);
-    }
+    void unsetWhiteRookOccupancyBitboard(int boxNo);
+
+    void setBlackBishopOccupancyBitboard(int boxNo);
+
+    void setWhiteBishopOccupancyBitboard(int boxNo);
+
+    void unsetBlackBishopOccupancyBitboard(int boxNo);
+
+    void unsetWhiteBishopOccupancyBitboard(int boxNo);
+
+    void makeMove(Move move, Board board) throws InputParser.NoPieceException;
+
+    boolean isVirtualBoard();
 
 
-
+//    void makeMove(Move move);
+//////////////////////////////////////////////////////
 
 }

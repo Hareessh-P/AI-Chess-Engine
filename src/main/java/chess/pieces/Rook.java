@@ -10,9 +10,8 @@ public class Rook extends SpecialChessPiece{
     }
 
     @Override
-    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo) {
+    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo, Board board) {
 
-        Board board = Board.getInstance();
         long rookMask = AttackMasks.ROOK_ATTACK_MASKS[fromBoxNo];
         long occBitboard = board.getOccupancyBitboard().bitboard;
 
@@ -33,6 +32,18 @@ public class Rook extends SpecialChessPiece{
             // const --> fromRow
             if(blockers.getBitInOccupancyBitboard(fromRow*8 + i)){
                 leftBlockerFound = true;
+                if (fromRow*8 + i == toBoxNo) {
+                    if (this.getColour()) {
+                        if ((board.getWhiteOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                    else {
+                        if ((board.getBlackOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                }
             }
             else if (fromRow*8 + i == toBoxNo) {
                 return leftBlockerFound ? false : true;
@@ -42,6 +53,18 @@ public class Rook extends SpecialChessPiece{
             // const --> fromRow
             if(blockers.getBitInOccupancyBitboard(fromRow*8 + i)){
                 rightBlockerFound = true;
+                if (fromRow*8 + i == toBoxNo) {
+                    if (this.getColour()) {
+                        if ((board.getWhiteOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                    else {
+                        if ((board.getBlackOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                }
             }
             else if (fromRow*8 + i == toBoxNo) {
                 return rightBlockerFound ? false : true;
@@ -51,6 +74,18 @@ public class Rook extends SpecialChessPiece{
             // const --> fromCol
             if(blockers.getBitInOccupancyBitboard(i*8 + fromCol)){
                 downBlockerFound = true;
+                if (i*8 + fromCol == toBoxNo) {
+                    if (this.getColour()) {
+                        if ((board.getWhiteOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                    else {
+                        if ((board.getBlackOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                }
             }
             else if (i*8 + fromCol == toBoxNo) {
                 return downBlockerFound ? false : true;
@@ -60,6 +95,18 @@ public class Rook extends SpecialChessPiece{
             // const --> fromCol
             if(blockers.getBitInOccupancyBitboard(i*8 + fromCol)){
                 upBlockerFound = true;
+                if (i*8 + fromCol == toBoxNo) {
+                    if (this.getColour()) {
+                        if ((board.getWhiteOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                    else {
+                        if ((board.getBlackOccupancyBitboard().getBitboard() >>> toBoxNo & 1) == 1) {
+                            return true;
+                        }
+                    }
+                }
             }
             else if (i*8 + fromCol == toBoxNo) {
                 return upBlockerFound ? false : true;
@@ -70,10 +117,9 @@ public class Rook extends SpecialChessPiece{
     }
 
     @Override
-    public void placePiece(int boxNo) {
-        super.placePiece(boxNo);
+    public void placePiece(int boxNo, Board board) {
+        super.placePiece(boxNo, board);
         boolean colour = this.getColour();
-        Board board = Board.getInstance();
 
         if(colour) {
             board.setBlackRookOccupancyBitboard(boxNo);
@@ -84,10 +130,9 @@ public class Rook extends SpecialChessPiece{
     }
 
     @Override
-    public void removePiece(int boxNo) {
-        super.removePiece(boxNo);
+    public void removePiece(int boxNo, Board board) {
+        super.removePiece(boxNo, board);
         boolean colour = this.getColour();
-        Board board = Board.getInstance();
 
         if(colour) {
             board.unsetBlackRookOccupancyBitboard(boxNo);

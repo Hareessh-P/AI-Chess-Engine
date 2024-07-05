@@ -1,6 +1,7 @@
 package chess.pieces;
 
 import chess.board.Board;
+import chess.game.InputParser;
 import chess.moves.Move;
 import chess.resources.AttackMasks;
 
@@ -12,7 +13,7 @@ public class Pawn extends ChessPiece{
     }
 
     @Override                                             //  TODO : Refactor this :/
-    public void movePiece(Move move, Board board)  {
+    public void movePiece(Move move, Board board) throws InputParser.NoPieceException {
 
         System.out.println("we r inside Pawn move piece method ...");
 
@@ -32,7 +33,7 @@ public class Pawn extends ChessPiece{
                         this.getColour(), fromBoxNo
                 ), toBoxNo);
 
-        if(!isNormalMove & !isAttackMove) {
+        if(!isNormalMove && !isAttackMove && !board.isVirtualBoard()) {
             throw new InvalidMoveException("Invalid move.");
         }
 
@@ -52,7 +53,7 @@ public class Pawn extends ChessPiece{
             else if(isAttackMove){      // TODO --> DONE : ATTACK --> its just a valid move for now until we maintain separate bitboards for each piece type ... :)
                 if(pieceInToBox != null) {      // Redundant if ...
                     move.setCaptureMove(true);
-                    pieceInToBox.removePiece(toBoxNo);
+                    pieceInToBox.removePiece(toBoxNo, board);
                 }
 //                move.setCaptured();       TODO ... setCaptured accepts ChessPiece ... + Unset occupancy bitboard of piece to be removed
             }
@@ -86,6 +87,16 @@ public class Pawn extends ChessPiece{
         board.movePieceOnDisplayBoard(
                 fromBoxNo, toBoxNo
         );
+    }
+
+    public void removePiece(int toBoxNo, Board board) {
+        super.removePiece(toBoxNo, board);
+        if (this.getColour()) {
+            board.unsetBlackPawnOccupancyBitboard(toBoxNo);
+        }
+        else {
+            board.unsetWhitePawnOccupancyBitboard(toBoxNo);
+        }
     }
 
 

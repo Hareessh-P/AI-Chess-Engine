@@ -1,7 +1,8 @@
 package chess.resources;
 
 public class AttackMasks {
-
+/*
+THIS IS TOTALLY WRONG ...
     //      convention :
     //      16 17 ......
     //      8  9  10 11 12 13 14 15
@@ -11,6 +12,7 @@ public class AttackMasks {
 //    1 1 0 0 | 0 0 0 0
 //    0 1 0 0 | 0 0 0 0
 //    0x302 --> 0011 0000 0010
+*/
     public static final long[] KING_MOVES_MASKS = {
             0x302L, 0x705L, 0xe0aL, 0x1c14L,
             0x3828L, 0x7050L, 0xe0a0L, 0xc040L,
@@ -32,6 +34,9 @@ public class AttackMasks {
 
     // A lookup table for knight move bitboards
     public static final long[] KNIGHT_MOVES_MASKS = {
+            /*
+            same convention as pawn
+             */
             0x20400L, 0x50800L, 0xa1100L, 0x142200L,
             0x284400L, 0x508800L, 0xa01000L, 0x402000L,
             0x2040004L, 0x5080008L, 0xa110011L, 0x14220022L,
@@ -52,6 +57,10 @@ public class AttackMasks {
 
     // A lookup table for white pawn move bitboards
     public static final long[] WHITE_PAWN_ATTACKS_MASKS = {
+            /*
+            15 14 13 12 11 10 9 8
+            7   6  5  4  3  2 1 0
+            */
             0x200L, 0x500L, 0xa00L, 0x1400L,
             0x2800L, 0x5000L, 0xa000L, 0x4000L,
             0x20000L, 0x50000L, 0xa0000L, 0x140000L,
@@ -72,6 +81,9 @@ public class AttackMasks {
 
     // A lookup table for black pawn move bitboards
     public static final long[] BLACK_PAWN_ATTACKS_MASKS = {
+            /*
+            Same as white pawn attack mask
+             */
             0x0L, 0x0L, 0x0L, 0x0L,
             0x0L, 0x0L, 0x0L, 0x0L,
             0x2L, 0x5L, 0xaL, 0x14L,
@@ -94,6 +106,9 @@ public class AttackMasks {
     //                          ROMBA SUSS AHH IRUKE ...
     // Bishop attack mask
     public static final long[] BISHOP_ATTACK_MASKS = {
+            /*
+            Same convention as pawn
+             */
             0x8040201008040200L, 0x80402010080500L, 0x804020110a00L, 0x8041221400L,
             0x182442800L, 0x10204885000L, 0x102040810a000L, 0x102040810204000L,
             0x4020100804020002L, 0x8040201008050005L, 0x804020110a000aL, 0x804122140014L,
@@ -114,6 +129,9 @@ public class AttackMasks {
 
     // Rook attack mask
     public static final long[] ROOK_ATTACK_MASKS = {
+            /*
+            same convention as pawn
+             */
             0x1010101010101feL, 0x2020202020202fdL, 0x4040404040404fbL, 0x8080808080808f7L,
             0x10101010101010efL, 0x20202020202020dfL, 0x40404040404040bfL, 0x808080808080807fL,
             0x10101010101fe01L, 0x20202020202fd02L, 0x40404040404fb04L, 0x80808080808f708L,
@@ -133,6 +151,9 @@ public class AttackMasks {
     };
 
     public static final long[] WHITE_PAWN_NORMAL_MOVE_MASKS = {
+            /*
+            Same convention as pawn attack masks
+             */
             0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L,
             0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L,
             0x0000000001010000L, 0x0000000002020000L, 0x0000000004040000L, 0x0000000008080000L,
@@ -153,6 +174,9 @@ public class AttackMasks {
 
     // A lookup table for black pawn move bitboards
     public static final long[] BLACK_PAWN_NORMAL_MOVE_MASKS = {
+            /*
+            Same as pawn attack masks
+             */
             0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L,
             0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L, 0x0000000000000000L,
             0x0000000000000001L, 0x0000000000000002L, 0x0000000000000004L, 0x0000000000000008L,
@@ -202,5 +226,6 @@ public class AttackMasks {
     // Private constructor to prevent instantiation
     private AttackMasks() {}
 }
+
 
 

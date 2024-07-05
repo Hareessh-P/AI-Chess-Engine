@@ -1,17 +1,14 @@
 package chess.pieces;
 
 import chess.board.Board;
+import chess.game.InputParser;
 import chess.moves.Move;
 
 public interface Piece {
 //    Bitboard bbPosition = null;
 
-
-
-
-
     // TODO
-    void movePiece(Move move, Board board) ;
+    void movePiece(Move move, Board board) throws InputParser.NoPieceException;
 
     boolean getColour();
 
@@ -21,7 +18,7 @@ public interface Piece {
         return (num & (1L << n)) != 0;
     }
 
-    void removePiece(int toBoxNo);
+    void removePiece(int toBoxNo, Board board);
 
     public class InvalidMoveException extends RuntimeException {
         public InvalidMoveException(String message) {

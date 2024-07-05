@@ -8,19 +8,18 @@ public class Queen extends SpecialChessPiece{
     }
 
     @Override
-    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo) {
+    public boolean isValidPieceMove(int fromBoxNo, int toBoxNo, Board board) {
         Bishop bishop = new Bishop(this.getBoxNo(),this.getColour());
         Rook rook = new Rook(this.getBoxNo(),this.getColour());
 
-        return bishop.isValidPieceMove(fromBoxNo,toBoxNo)
-                | rook.isValidPieceMove(fromBoxNo, toBoxNo);
+        return bishop.isValidPieceMove(fromBoxNo,toBoxNo,board)
+                | rook.isValidPieceMove(fromBoxNo, toBoxNo, board);
     }
 
     @Override
-    public void placePiece(int boxNo) {
-        super.placePiece(boxNo);
+    public void placePiece(int boxNo, Board board) {
+        super.placePiece(boxNo, board);
         boolean colour = this.getColour();
-        Board board = Board.getInstance();
 
         if(colour) {
             board.setBlackQueenOccupancyBitboard(boxNo);
@@ -31,10 +30,9 @@ public class Queen extends SpecialChessPiece{
     }
 
     @Override
-    public void removePiece(int boxNo) {
-        super.removePiece(boxNo);
+    public void removePiece(int boxNo, Board board) {
+        super.removePiece(boxNo, board);
         boolean colour = this.getColour();
-        Board board = Board.getInstance();
 
         if(colour) {
             board.unsetBlackQueenOccupancyBitboard(boxNo);

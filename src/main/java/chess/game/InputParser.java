@@ -113,6 +113,72 @@ public class InputParser {
     }
 
 
+    public Piece getChessPiece(int boxNo)  {
+        // Get the piece from the BoardPrinter object
+        int row = boxNo / 8;
+        int col = boxNo % 8;
+        String pieceUnicode = boardPrinter.getElement(row, col);
+        int codePoint = pieceUnicode.codePointAt(0);
+        boolean colour = true;
+        //      White colour unicode lie between this range ...
+        if (codePoint >= 0x2654 && codePoint <= 0x265F) {
+            colour = false;
+        } // false --> White ...
+
+        long bitRepresentation = BitboardGenerator.generateBitboard(row, col);
+        Bitboard bbPosition = new Bitboard(bitRepresentation, colour);
+
+        if (codePoint >= 0x265A && codePoint <= 0x265F) {
+            // Piece is black
+            switch (pieceUnicode) {
+                case "♟":
+                    System.out.println("Heyy did u choose ♟ " + "\nrow : " + row + "  col : " + col);
+                    return new Pawn(boxNo, true);
+                case "♜":
+                    System.out.println("Heyy did u choose ♜ " + "\nrow : " + row + "  col : " + col);
+                    return new Rook(boxNo, true);
+                case "♞":
+                    System.out.println("Heyy did u choose ♞" + "\nrow : " + row + "  col : " + col);
+                    return new Knight(boxNo, true);
+                case "♝":
+                    System.out.println("Heyy did u choose ♝" + "\nrow : " + row + "  col : " + col);
+                    return new Bishop(boxNo, true);
+                case "♛":
+                    System.out.println("Heyy did u choose ♛" + "\nrow : " + row + "  col : " + col);
+                    return new Queen(boxNo, true);
+                case "♚":
+                    System.out.println("Heyy did u choose ♚" + "\nrow : " + row + "  col : " + col);
+                    return new King(boxNo, true);
+            }
+        }
+        //      WHITE PIECES
+        if (codePoint >= 0x2654 && codePoint <= 0x265F) {
+            // White pieces range: U+2654 to U+265F
+            switch (pieceUnicode) {
+
+                case "♙":
+                    System.out.println("Heyy did u choose ♙" + "\nrow : " + row + "  col : " + col);
+                    return new Pawn(boxNo, false);
+                case "♖":
+                    System.out.println("Heyy did u choose ♖" + "\nrow : " + row + "  col : " + col);
+                    return new Rook(boxNo, false);
+                case "♘":
+                    System.out.println("Heyy did u choose ♘" + "\nrow : " + row + "  col : " + col);
+                    return new Knight(boxNo, false);
+                case "♗":
+                    System.out.println("Heyy did u choose ♗" + "\nrow : " + row + "  col : " + col);
+                    return new Bishop(boxNo, false);
+                case "♕":
+                    System.out.println("Heyy did u choose ♕" + "\nrow : " + row + "  col : " + col);
+                    return new Queen(boxNo, false);
+                case "♔":
+                    System.out.println("Heyy did u choose ♔" + "\nrow : " + row + "  col : " + col);
+                    return new King(boxNo, false);
+            }
+        }
+
+        return null;
+    }
 //    private String generateMove(ChessPiece piece, char fromFile, char fromRank, char toFile, char toRank) {
 //        // Logic to generate the move based on the piece and positions
 //        // You can implement your logic here
@@ -124,12 +190,13 @@ public class InputParser {
         return Character.getNumericValue(rank) - 1;
     }
 
+
     private int getFileIndex(char file) {
         // Convert the file character to the column index
         if (Character.isUpperCase(file)) {
-            return file - 'A';
+            return 7 - (file - 'A');
         } else {
-            return file - 'a';
+            return 7 - (file - 'a');
         }
     }
 
@@ -139,7 +206,7 @@ public class InputParser {
         return rankIndex * 8 + fileIndex;
     }
 
-    class NoPieceException extends Throwable {
+    public class NoPieceException extends Throwable {
         public NoPieceException(String s) {
         }
     }

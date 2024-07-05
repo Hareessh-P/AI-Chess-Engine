@@ -11,21 +11,21 @@ import chess.pieces.Piece;
 
 public class MoveActuator {
     Move move;
-    BoardPrinter boardPrinter;
+//    BoardPrinter boardPrinter;
     Board board;
 
-    public MoveActuator(Move move, BoardPrinter boardPrinter, Board board) {
+    public MoveActuator(Move move, /* BoardPrinter boardPrinter ,*/ Board board) {
         this.move = move;
-        this.boardPrinter = boardPrinter;
+//        this.boardPrinter = boardPrinter;
         this.board = board;
     }
 
-    public void executeMove() {
+    public void executeMove(Board board) throws InputParser.NoPieceException {
         Piece piece = this.move.getMover();
 // TODO : I'll proly move this .movePiece to first --> update move object and use boardPrinter to print the board accordingly ..
         piece.movePiece(
                 this.move,
-                this.board
+                board
                 );
     }
 
