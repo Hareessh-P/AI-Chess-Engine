@@ -69,4 +69,97 @@ In conclusion, this chess engine development project successfully integrated adv
 
 By leveraging fundamental principles and innovative techniques, this project contributes to advancements in artificial intelligence and game-playing systems, paving the way for intelligent applications in strategic domains.
 
+
+# Multithreading  🚀
+
+
+## Core Concepts
+
+### Concurrency vs. Parallelism
+
+Concurrency in Java allows tasks to overlap in time, while parallelism involves tasks running simultaneously on multiple cores. We utilize `ExecutorService` and `ThreadPoolExecutor` to manage threads, achieving parallel execution and optimizing throughput.
+
+### Thread Safety
+
+Ensuring thread safety is essential to prevent data corruption in shared data structures like the chess board state. We use synchronized blocks and methods to serialize access to critical sections of code, ensuring consistency. Concurrent data structures like `ConcurrentHashMap` facilitate safe access to shared resources without explicit locking.
+
+### Debugging Challenges faced
+
+Debugging multithreaded code presents challenges due to non-deterministic behavior in thread scheduling. Issues like race conditions, where simultaneous access to shared data leads to unpredictable results, and deadlocks, where threads wait indefinitely for resources, require careful debugging using tools like Java debuggers (`jdb`) and profilers (VisualVM, YourKit).
+
+### Performance Optimization
+
+To optimize performance, we tune thread pool sizes and workload distribution strategies. Minimizing thread contention and efficiently managing resources across threads are critical. Profiling tools help identify CPU utilization, memory usage, and thread contention to pinpoint bottlenecks and optimize thread management.
+
+## Example Code: Multithreaded Minimax Algorithm
+
+Here’s a simplified example demonstrating how multithreading can be integrated with the minimax algorithm for move evaluation in our chess engine:
+
+```java
+import java.util.concurrent.*;
+
+public class MinimaxThreaded {
+
+    private ExecutorService executor;
+
+    public MinimaxThreaded() {
+        this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
+    }
+
+    public int minimax(BoardState board, int depth, boolean maximizingPlayer) {
+        if (depth == 0 || board.isGameOver()) {
+            return evaluate(board);
+        }
+
+        if (maximizingPlayer) {
+            int maxEval = Integer.MIN_VALUE;
+            for (Move move : board.getPossibleMoves()) {
+                BoardState nextState = board.makeMove(move);
+                Future<Integer> evalFuture = executor.submit(() ->
+                        minimax(nextState, depth - 1, false));
+                try {
+                    int eval = evalFuture.get();
+                    maxEval = Math.max(maxEval, eval);
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+            return maxEval;
+        } else {
+            int minEval = Integer.MAX_VALUE;
+            for (Move move : board.getPossibleMoves()) {
+                BoardState nextState = board.makeMove(move);
+                Future<Integer> evalFuture = executor.submit(() ->
+                        minimax(nextState, depth - 1, true));
+                try {
+                    int eval = evalFuture.get();
+                    minEval = Math.min(minEval, eval);
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                }
+            }
+            return minEval;
+        }
+    }
+
+    private int evaluate(BoardState board) {
+        // Implement your board evaluation function here
+        return 0;
+    }
+
+    public void shutdown() {
+        executor.shutdown();
+    }
+
+    // Example usage:
+    public static void main(String[] args) {
+        BoardState initialBoard = new BoardState();
+        MinimaxThreaded minimaxThreaded = new MinimaxThreaded();
+        int bestMoveValue = minimaxThreaded.minimax(initialBoard, 3, true);
+        minimaxThreaded.shutdown();
+        System.out.println("Best move value: " + bestMoveValue);
+    }
+}
+
+```
 #### If you have reached till here, Thank you! 😊
