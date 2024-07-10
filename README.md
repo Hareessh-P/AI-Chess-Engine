@@ -91,9 +91,7 @@ Debugging multithreaded code presents challenges due to non-deterministic behavi
 
 To optimize performance, we tune thread pool sizes and workload distribution strategies. Minimizing thread contention and efficiently managing resources across threads are critical. Profiling tools help identify CPU utilization, memory usage, and thread contention to pinpoint bottlenecks and optimize thread management.
 
-## Example Code: Multithreaded Minimax Algorithm
-
-Here’s a simplified example demonstrating how multithreading can be integrated with the minimax algorithm for move evaluation in our chess engine:
+## Simplified Code: Multithreaded Minimax Algorithm
 
 ```java
 import java.util.concurrent.*;
