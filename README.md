@@ -106,59 +106,6 @@ public class MinimaxThreaded {
         this.executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     }
 
-    public int minimax(BoardState board, int depth, boolean maximizingPlayer) {
-        if (depth == 0 || board.isGameOver()) {
-            return evaluate(board);
-        }
-
-        if (maximizingPlayer) {
-            int maxEval = Integer.MIN_VALUE;
-            for (Move move : board.getPossibleMoves()) {
-                BoardState nextState = board.makeMove(move);
-                Future<Integer> evalFuture = executor.submit(() ->
-                        minimax(nextState, depth - 1, false));
-                try {
-                    int eval = evalFuture.get();
-                    maxEval = Math.max(maxEval, eval);
-                } catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
-                }
-            }
-            return maxEval;
-        } else {
-            int minEval = Integer.MAX_VALUE;
-            for (Move move : board.getPossibleMoves()) {
-                BoardState nextState = board.makeMove(move);
-                Future<Integer> evalFuture = executor.submit(() ->
-                        minimax(nextState, depth - 1, true));
-                try {
-                    int eval = evalFuture.get();
-                    minEval = Math.min(minEval, eval);
-                } catch (InterruptedException | ExecutionException e) {
-                    e.printStackTrace();
-                }
-            }
-            return minEval;
-        }
-    }
-
-    private int evaluate(BoardState board) {
-        // Implement your board evaluation function here
-        return 0;
-    }
-
-    public void shutdown() {
-        executor.shutdown();
-    }
-
-    // Example usage:
-    public static void main(String[] args) {
-        BoardState initialBoard = new BoardState();
-        MinimaxThreaded minimaxThreaded = new MinimaxThreaded();
-        int bestMoveValue = minimaxThreaded.minimax(initialBoard, 3, true);
-        minimaxThreaded.shutdown();
-        System.out.println("Best move value: " + bestMoveValue);
-    }
 }
 
 ```
