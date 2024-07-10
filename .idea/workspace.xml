@@ -3,4 +3,496 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c6fe27cc-e251-474a-b7bc-b7f1ca979b1a" name="Changes" comment="added readme">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hs_pid33948.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/attack_masks.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/chess_display.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/cpu_profiler_perf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/memory_util_log.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/perf1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/agent/Agent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/board/Board.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/board/BoardPrinter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/board/GameBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/board/VirtualBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/evaluation/BoardEvaluator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/game/BitboardGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/game/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/game/InputParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/game/MoveActuator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateBishopMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateKingMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateKnightMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateQueenMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateRookMoves.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/moves/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Bishop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Bitboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/ChessPiece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/King.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Knight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Piece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Queen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/Rook.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/pieces/SpecialChessPiece.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/resources/AttackMasks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/search/Minimax.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/chess/search/MonteCarloTreeSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Perft.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+        &quot;associatedIndex&quot;: 5
+        }</component>
+  <component name="ProjectId" id="2dUeO8U2b7Ek5yIe1UUuGZvKuqW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Merging main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "D:/ChessEngine/src/main/java/chess/pieces",
+    "last_opened_file_path": "D:/BankingPortal-Frontend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="chess.pieces" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="ChessEngine" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c6fe27cc-e251-474a-b7bc-b7f1ca979b1a" name="Changes" comment="" />
+      <created>1710067050829</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710067050829</updated>
+      <workItem from="1710067051944" duration="23311000" />
+      <workItem from="1710124878723" duration="8971000" />
+      <workItem from="1710217984808" duration="36932000" />
+      <workItem from="1710352606730" duration="35881000" />
+      <workItem from="1710613018483" duration="15889000" />
+      <workItem from="1710844686369" duration="49000" />
+      <workItem from="1712594920387" duration="2704000" />
+      <workItem from="1713262265707" duration="26069000" />
+      <workItem from="1713332641227" duration="486000" />
+      <workItem from="1713343155074" duration="15319000" />
+      <workItem from="1713410061895" duration="39139000" />
+      <workItem from="1713708454177" duration="5958000" />
+      <workItem from="1713753804883" duration="19420000" />
+      <workItem from="1713840222434" duration="8768000" />
+      <workItem from="1713892035677" duration="872000" />
+      <workItem from="1713929548324" duration="619000" />
+      <workItem from="1713949026071" duration="1345000" />
+      <workItem from="1717585795106" duration="894000" />
+      <workItem from="1720186528850" duration="2274000" />
+      <workItem from="1720629090040" duration="292000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit, &#10;1.) chess-interface working perfectly&#10;2.) Added AttackMasks&#10;critical pending tasks in this commit :&#10;rook and bishop attack mask validation.">
+      <option name="closed" value="true" />
+      <created>1710246823158</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710246823158</updated>
+    </task>
+    <task id="LOCAL-00002" summary="second commit, &#10;1.) chess rules implemented&#10;pending tasks in this commit :&#10;identifying &quot;check&quot; after each move.&#10;implementing the logic for 'game win'.">
+      <option name="closed" value="true" />
+      <created>1710731094234</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710731094234</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added readme">
+      <option name="closed" value="true" />
+      <created>1720186660232</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720186660232</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added readme">
+      <option name="closed" value="true" />
+      <created>1720186947284</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720186947284</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit, &#10;1.) chess-interface working perfectly&#10;2.) Added AttackMasks&#10;critical pending tasks in this commit :&#10;rook and bishop attack mask validation." />
+    <MESSAGE value="second commit, &#10;1.) chess rules implemented&#10;pending tasks in this commit :&#10;identifying &quot;check&quot; after each move.&#10;implementing the logic for 'game win'." />
+    <MESSAGE value="added readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="added readme" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateBishopMoves.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/game/Game.java</url>
+          <line>114</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/game/Game.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateRookMoves.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateRookMoves.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/agent/Agent.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/search/Minimax.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/ChessPiece.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/game/Game.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/SpecialChessPiece.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/SpecialChessPiece.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateMoves.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/agent/Agent.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/game/Game.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/game/MoveActuator.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/board/GameBoard.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/board/GameBoard.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GeneratePawnMoves.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/agent/Agent.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="70" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="76" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="77" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/moves/Move.java</url>
+          <line>86</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/ChessPiece.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/pieces/Pawn.java</url>
+          <line>97</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateRookMoves.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/chess/generateMoves/GenerateRookMoves.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="chess.pieces.Piece$InvalidMoveException" package="chess.pieces" />
+          <option name="timeStamp" value="90" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="chess.game.InputParser$NoPieceException" package="chess.game" />
+          <option name="timeStamp" value="91" />
+        </breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
